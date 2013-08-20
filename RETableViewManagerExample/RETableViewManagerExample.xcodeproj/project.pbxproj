@@ -83,6 +83,9 @@
 		30FE4161176A32C300F317B8 /* Middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FE4158176A32C300F317B8 /* Middle@2x.png */; };
 		30FE4162176A32C300F317B8 /* Single_Selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FE4159176A32C300F317B8 /* Single_Selected@2x.png */; };
 		30FE4163176A32C300F317B8 /* Single@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FE415A176A32C300F317B8 /* Single@2x.png */; };
+		9F15278917C209D4007CFB5F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F15278817C209D4007CFB5F /* QuartzCore.framework */; };
+		9FCAF47717C1C8C5006C2D4C /* IBLImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCAF47617C1C8C5006C2D4C /* IBLImageItem.m */; };
+		9FCAF47A17C1C91A006C2D4C /* IBLTableViewImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCAF47917C1C91A006C2D4C /* IBLTableViewImageCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -205,6 +208,11 @@
 		30FE4158176A32C300F317B8 /* Middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Middle@2x.png"; path = "Resources/Middle@2x.png"; sourceTree = "<group>"; };
 		30FE4159176A32C300F317B8 /* Single_Selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Single_Selected@2x.png"; path = "Resources/Single_Selected@2x.png"; sourceTree = "<group>"; };
 		30FE415A176A32C300F317B8 /* Single@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Single@2x.png"; path = "Resources/Single@2x.png"; sourceTree = "<group>"; };
+		9F15278817C209D4007CFB5F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9FCAF47517C1C8C5006C2D4C /* IBLImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IBLImageItem.h; path = IBL/IBLImageItem.h; sourceTree = "<group>"; };
+		9FCAF47617C1C8C5006C2D4C /* IBLImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IBLImageItem.m; path = IBL/IBLImageItem.m; sourceTree = "<group>"; };
+		9FCAF47817C1C91A006C2D4C /* IBLTableViewImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IBLTableViewImageCell.h; path = IBL/IBLTableViewImageCell.h; sourceTree = "<group>"; };
+		9FCAF47917C1C91A006C2D4C /* IBLTableViewImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IBLTableViewImageCell.m; path = IBL/IBLTableViewImageCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F15278917C209D4007CFB5F /* QuartzCore.framework in Frameworks */,
 				30EF93B316E039B800B84981 /* UIKit.framework in Frameworks */,
 				30EF93B516E039B800B84981 /* Foundation.framework in Frameworks */,
 				30EF93B716E039B800B84981 /* CoreGraphics.framework in Frameworks */,
@@ -318,6 +327,7 @@
 		30DB064616E934AD006C9530 /* RETableViewManager */ = {
 			isa = PBXGroup;
 			children = (
+				9FCAF47417C1C889006C2D4C /* IBL */,
 				30DB064716E934AD006C9530 /* Cells */,
 				30DB065216E934AD006C9530 /* Items */,
 				30DB065D16E934AD006C9530 /* REActionBar.h */,
@@ -393,6 +403,7 @@
 		30EF93A616E039B800B84981 = {
 			isa = PBXGroup;
 			children = (
+				9F15278817C209D4007CFB5F /* QuartzCore.framework */,
 				30DB064616E934AD006C9530 /* RETableViewManager */,
 				30EF93B816E039B800B84981 /* RETableViewManagerExample */,
 				30EF93B116E039B800B84981 /* Frameworks */,
@@ -457,6 +468,17 @@
 				30939CDC17949A10004D95A9 /* Photos */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9FCAF47417C1C889006C2D4C /* IBL */ = {
+			isa = PBXGroup;
+			children = (
+				9FCAF47517C1C8C5006C2D4C /* IBLImageItem.h */,
+				9FCAF47617C1C8C5006C2D4C /* IBLImageItem.m */,
+				9FCAF47817C1C91A006C2D4C /* IBLTableViewImageCell.h */,
+				9FCAF47917C1C91A006C2D4C /* IBLTableViewImageCell.m */,
+			);
+			name = IBL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -593,6 +615,8 @@
 				303D966B17B7CCF800A418F3 /* XIBTestCell.m in Sources */,
 				303D967217B7CDE300A418F3 /* XIBTestViewController.m in Sources */,
 				30E5F50C17BBD163005CF1FE /* IndexedListViewController.m in Sources */,
+				9FCAF47717C1C8C5006C2D4C /* IBLImageItem.m in Sources */,
+				9FCAF47A17C1C91A006C2D4C /* IBLTableViewImageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,7 +696,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RETableViewManagerExample/RETableViewManagerExample-Prefix.pch";
 				INFOPLIST_FILE = "RETableViewManagerExample/RETableViewManagerExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -685,7 +709,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RETableViewManagerExample/RETableViewManagerExample-Prefix.pch";
 				INFOPLIST_FILE = "RETableViewManagerExample/RETableViewManagerExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

@@ -43,7 +43,9 @@
     self.textLabel.backgroundColor = [UIColor clearColor];
     
     _textView = [[REPlaceholderTextView alloc] init];
-    _textView.translatesAutoresizingMaskIntoConstraints = NO;
+    if ([_textView respondsToSelector:@selector(translatesAutoresizingMaskIntoConstraints)]) {
+        _textView.translatesAutoresizingMaskIntoConstraints = NO;
+    }
     _textView.inputAccessoryView = self.actionBar;
     _textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _textView.backgroundColor = [UIColor clearColor];
@@ -65,11 +67,17 @@
 
     UILabel *label = self.textLabel;
     
-    CGFloat padding = (REDeviceIsUIKit7() && self.section.style.contentViewMargin <= 0) ? 7 : 2;
-    NSDictionary *metrics = @{ @"padding": @(padding) };
-    [self.contentView removeConstraints:self.contentView.constraints];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_textView]-2-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(_textView, label)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-padding-[_textView]-padding-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(_textView, label)]];
+    if ([self.contentView respondsToSelector:@selector(addConstraint:)]) {
+        CGFloat padding = (REDeviceIsUIKit7() && self.section.style.contentViewMargin <= 0) ? 7 : 2;
+        NSDictionary *metrics = @{ @"padding": @(padding) };
+        [self.contentView removeConstraints:self.contentView.constraints];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_textView]-2-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(_textView, label)]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-padding-[_textView]-padding-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(_textView, label)]];
+    } else {
+        NSLog(@"cell frame: %@, textview: %@", NSStringFromCGRect(self.frame), NSStringFromCGRect(_textView.frame));
+        
+    }
+    
     
     _textView.editable = self.item.editable;
     _textView.inputAccessoryView = _textView.editable ?  self.actionBar : nil;
@@ -101,6 +109,9 @@
     [super layoutSubviews];
     if ([self.tableViewManager.delegate respondsToSelector:@selector(tableView:willLayoutCellSubviews:forRowAtIndexPath:)])
         [self.tableViewManager.delegate tableView:self.tableViewManager.tableView willLayoutCellSubviews:self forRowAtIndexPath:[(UITableView *)self.superview indexPathForCell:self]];
+        if (![self respondsToSelector:@selector(addConstraint:)]) {
+        _textView.frame = CGRectMake(2.0, 2.0, self.contentView.frame.size.width - 2 * 2.0, self.contentView.frame.size.height - 2 * 2.0);
+    }
 }
 
 

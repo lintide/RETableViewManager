@@ -37,24 +37,31 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     _switchView = [[UISwitch alloc] init];
-    _switchView.translatesAutoresizingMaskIntoConstraints = NO;
+    if ([self.contentView respondsToSelector:@selector(translatesAutoresizingMaskIntoConstraints)]) {
+        _switchView.translatesAutoresizingMaskIntoConstraints = NO;
+    }
     [_switchView addTarget:self action:@selector(switchValueDidChange:) forControlEvents:UIControlEventValueChanged];
     [self.contentView addSubview:_switchView];
 }
 
 - (void)cellWillAppear
 {
-    [self.contentView removeConstraints:self.contentView.constraints];
-    CGFloat margin = (REDeviceIsUIKit7() && self.section.style.contentViewMargin <= 0) ? 15.0 : 10.0;
-    NSDictionary *metrics = @{@"margin": @(margin)};
-    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_switchView
-                                                                 attribute:NSLayoutAttributeCenterY
-                                                                 relatedBy:NSLayoutRelationEqual
-                                                                    toItem:self.contentView
-                                                                 attribute:NSLayoutAttributeCenterY
-                                                                multiplier:1.0
-                                                                  constant:0]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_switchView]-margin-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(_switchView)]];
+    if ([self.contentView respondsToSelector:@selector(addConstraint:)]) {
+        [self.contentView removeConstraints:self.contentView.constraints];
+        CGFloat margin = (REDeviceIsUIKit7() && self.section.style.contentViewMargin <= 0) ? 15.0 : 10.0;
+        NSDictionary *metrics = @{@"margin": @(margin)};
+        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_switchView
+                                                                     attribute:NSLayoutAttributeCenterY
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.contentView
+                                                                     attribute:NSLayoutAttributeCenterY
+                                                                    multiplier:1.0
+                                                                      constant:0]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_switchView]-margin-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(_switchView)]];
+    } else {
+        _switchView.frame = CGRectMake(self.frame.size.width - _switchView.frame.size.width - 25.0, (self.frame.size.height - _switchView.frame.size.height)/2, _switchView.frame.size.width, _switchView.frame.size.height);
+    }
+    
     
     self.textLabel.backgroundColor = [UIColor clearColor];
     self.textLabel.text = self.item.title;

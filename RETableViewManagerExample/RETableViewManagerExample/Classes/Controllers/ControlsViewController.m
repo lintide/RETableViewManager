@@ -7,6 +7,8 @@
 //
 
 #import "ControlsViewController.h"
+#import "IBLImageItem.h"
+#import "IBLTableViewImageCell.h"
 
 @interface ControlsViewController ()
 
@@ -35,6 +37,7 @@
     // Create manager
     //
     _manager = [[RETableViewManager alloc] initWithTableView:self.tableView delegate:self];
+    [_manager registerClass:NSStringFromClass([IBLImageItem class]) forCellWithReuseIdentifier:NSStringFromClass([IBLTableViewImageCell class])];
 
     self.basicControlsSection = [self addBasicControls];
     self.creditCardSection = [self addCreditCard];
@@ -146,6 +149,13 @@
     }];
     self.longTextItem = [RELongTextItem itemWithValue:nil placeholder:@"Multiline text field"];
     self.longTextItem.cellHeight = 88;
+    
+    IBLImageItem *imageItem = [[IBLImageItem alloc] initWithTitle:@"Avatar" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item) {
+       
+    }];
+    imageItem.placeholderImage = [UIImage imageNamed:@"Heart"];
+    imageItem.cellHeight = 88.0;
+//    [section addItem:imageItem];
     
     [section addItem:self.fullLengthFieldItem];
     [section addItem:self.textItem];
